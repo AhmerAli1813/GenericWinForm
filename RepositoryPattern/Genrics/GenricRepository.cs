@@ -29,8 +29,8 @@ namespace RepositoryPattern.Genrics
             {
                 connection.Open();
                 //Construct the query of pagination 
-                string query = $"SELECT * FROM (SELECT * , ROW_NUMBER() OVER(ORDER BY {orderByColumn} AS RowNum FROM {tabelName}" +
-                    $" WHERE {GenerateSerachConditionForCount(searchColumn)})  AS TempTable WHERE RowNum BETWEEN @startIndex AND @endIndex)";
+                string query = $"SELECT * FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY {orderByColumn}) AS RowNum FROM {tabelName}" +
+                    $" WHERE {GenerateSerachConditionForCount(searchColumn)})  AS TempTable WHERE RowNum BETWEEN @startIndex AND @endIndex";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@search", "%" + searchCriteria + "%");
@@ -38,6 +38,7 @@ namespace RepositoryPattern.Genrics
                 //Calculate the start and end index of pagination
                 int startIndex = (page - 1 ) * recordsPerPage + 1;
                 int endIndex = page * recordsPerPage;
+
                 cmd.Parameters.AddWithValue("@startIndex", startIndex);
                 cmd.Parameters.AddWithValue("@endIndex", endIndex);
 
@@ -66,9 +67,9 @@ namespace RepositoryPattern.Genrics
             List<string> condition = new List<string>();
             foreach (var item in columns)
             {
-                condition.Add($"{item} LIKE @search");
+                condition.Add($" {item} LIKE @search ");
             }
-            return string.Join("OR ", condition);
+            return string.Join(" OR ", condition);
             
         }
     }

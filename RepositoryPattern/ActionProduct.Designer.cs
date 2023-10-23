@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.id = new System.Windows.Forms.TextBox();
+            this.idTxtBx = new System.Windows.Forms.TextBox();
             this.updateBtn = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,17 +42,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // id
+            // idTxtBx
             // 
-            this.id.Enabled = false;
-            this.id.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.id.Location = new System.Drawing.Point(140, 50);
-            this.id.MaxLength = 100;
-            this.id.Multiline = true;
-            this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(168, 26);
-            this.id.TabIndex = 23;
-            this.id.Visible = false;
+            this.idTxtBx.Enabled = false;
+            this.idTxtBx.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.idTxtBx.Location = new System.Drawing.Point(140, 50);
+            this.idTxtBx.MaxLength = 100;
+            this.idTxtBx.Multiline = true;
+            this.idTxtBx.Name = "idTxtBx";
+            this.idTxtBx.Size = new System.Drawing.Size(168, 26);
+            this.idTxtBx.TabIndex = 23;
+            this.idTxtBx.Visible = false;
             // 
             // updateBtn
             // 
@@ -64,6 +64,7 @@
             this.updateBtn.TabIndex = 22;
             this.updateBtn.Text = "Update";
             this.updateBtn.UseVisualStyleBackColor = false;
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // saveBtn
             // 
@@ -75,6 +76,7 @@
             this.saveBtn.TabIndex = 21;
             this.saveBtn.Text = "save";
             this.saveBtn.UseVisualStyleBackColor = false;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // button1
             // 
@@ -160,12 +162,12 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Product Name :";
             // 
-            // ActionProduct1
+            // ActionProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 409);
-            this.Controls.Add(this.id);
+            this.Controls.Add(this.idTxtBx);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.button1);
@@ -177,8 +179,9 @@
             this.Controls.Add(this.pPerizelbl);
             this.Controls.Add(this.pNameTxtBx);
             this.Controls.Add(this.label1);
-            this.Name = "ActionProduct1";
+            this.Name = "ActionProduct";
             this.Text = "ActionProduct1";
+            this.Load += new System.EventHandler(this.ActionProduct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +189,7 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox id;
+        public System.Windows.Forms.TextBox idTxtBx;
         public System.Windows.Forms.Button updateBtn;
         public System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button button1;

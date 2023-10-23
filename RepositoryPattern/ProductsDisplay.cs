@@ -40,7 +40,7 @@ namespace RepositoryPattern
             DisplayRecordPerPageCb.SelectedIndex = 0;
         }
 
-        private void LoadProductList()
+        public void LoadProductList()
         {
             string _SerachCriteria = SerachTxtBx.Text;
             //Use productServices to Get Products by filtering
@@ -84,8 +84,10 @@ namespace RepositoryPattern
         private void NewBtn_Click(object sender, EventArgs e)
         {
             ActionProduct actionProduct = new ActionProduct();
-            actionProduct.Show();
-            DialogResult result = actionProduct.ShowDialog();
+            //actionProduct.Show();
+             DialogResult result = actionProduct.ShowDialog();
+            actionProduct.saveBtn.Enabled = true;
+            actionProduct.saveBtn.BackColor = Color.LightGray;
             if(result == DialogResult.OK)
             {
 
@@ -107,13 +109,13 @@ namespace RepositoryPattern
                 string colName = ProductDisplayDGV.Columns[e.ColumnIndex].Name;
                 if (colName == "Edit")
                 {
-                    int productId = Convert.ToInt32(ProductDisplayDGV.Rows[e.RowIndex].Cells[1].Value);
+                    int productId = Convert.ToInt32(ProductDisplayDGV.Rows[e.RowIndex].Cells[0].Value);
                     Product product = productServices.GetProductFromId(productId);
                     if (product != null)
                     {
                         ActionProduct actionProduct = new ActionProduct();
                         actionProduct.Show();
-                        actionProduct.id.Text = product.p_id.ToString();
+                        actionProduct.idTxtBx.Text = product.p_id.ToString();
                         actionProduct.pNameTxtBx.Text = product.p_name;
                         actionProduct.stockTxtBx.Text = product.p_Stock.ToString();
                         actionProduct.pPerizeTxtBx.Text = product.p_unitPerPerize.ToString();
@@ -133,7 +135,7 @@ namespace RepositoryPattern
                 {
                     if (MessageBox.Show("Are you Sure want to delete this product", "Delete Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        int productDeleteId = Convert.ToInt32(ProductDisplayDGV.Rows[e.RowIndex].Cells[1].Value);
+                        int productDeleteId = Convert.ToInt32(ProductDisplayDGV.Rows[e.RowIndex].Cells[0].Value);
                         //cell the DeleteProduct  method from the productService to delete the product
                         productServices.DeleteProduct(productDeleteId);
                         MessageBox.Show(" delete Successfully ", "Delete Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);

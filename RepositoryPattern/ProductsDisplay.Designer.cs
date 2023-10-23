@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.topPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.SerachTxtBx = new System.Windows.Forms.TextBox();
@@ -35,6 +37,7 @@
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.ProductDisplayDGV = new System.Windows.Forms.DataGridView();
             this.BottomPanel = new System.Windows.Forms.Panel();
+            this.CurrentPageLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PervBtn = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
@@ -42,7 +45,13 @@
             this.FirstPageBtn = new System.Windows.Forms.Button();
             this.DisplayRecordPerPageCb = new System.Windows.Forms.ComboBox();
             this.TotalRecordsLbl = new System.Windows.Forms.Label();
-            this.CurrentPageLbl = new System.Windows.Forms.Label();
+            this.p_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_PerizePerUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.topPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDisplayDGV)).BeginInit();
@@ -102,6 +111,14 @@
             // ProductDisplayDGV
             // 
             this.ProductDisplayDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductDisplayDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.p_id,
+            this.p_name,
+            this.p_PerizePerUnit,
+            this.p_Stock,
+            this.p_desc,
+            this.Edit,
+            this.Delete});
             this.ProductDisplayDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProductDisplayDGV.Location = new System.Drawing.Point(0, 0);
             this.ProductDisplayDGV.Name = "ProductDisplayDGV";
@@ -124,6 +141,19 @@
             this.BottomPanel.Name = "BottomPanel";
             this.BottomPanel.Size = new System.Drawing.Size(884, 82);
             this.BottomPanel.TabIndex = 2;
+            // 
+            // CurrentPageLbl
+            // 
+            this.CurrentPageLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.CurrentPageLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CurrentPageLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CurrentPageLbl.Location = new System.Drawing.Point(548, 33);
+            this.CurrentPageLbl.Name = "CurrentPageLbl";
+            this.CurrentPageLbl.Size = new System.Drawing.Size(106, 31);
+            this.CurrentPageLbl.TabIndex = 14;
+            this.CurrentPageLbl.Text = "Total Records : ??";
+            this.CurrentPageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -210,18 +240,46 @@
             this.TotalRecordsLbl.Text = "Total Records : ??";
             this.TotalRecordsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // CurrentPageLbl
+            // p_id
             // 
-            this.CurrentPageLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.CurrentPageLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CurrentPageLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CurrentPageLbl.Location = new System.Drawing.Point(548, 33);
-            this.CurrentPageLbl.Name = "CurrentPageLbl";
-            this.CurrentPageLbl.Size = new System.Drawing.Size(106, 31);
-            this.CurrentPageLbl.TabIndex = 14;
-            this.CurrentPageLbl.Text = "Total Records : ??";
-            this.CurrentPageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.p_id.HeaderText = "Id";
+            this.p_id.Name = "p_id";
+            // 
+            // p_name
+            // 
+            this.p_name.HeaderText = "name";
+            this.p_name.Name = "p_name";
+            // 
+            // p_PerizePerUnit
+            // 
+            this.p_PerizePerUnit.HeaderText = "Perize";
+            this.p_PerizePerUnit.Name = "p_PerizePerUnit";
+            // 
+            // p_Stock
+            // 
+            this.p_Stock.HeaderText = "stock";
+            this.p_Stock.Name = "p_Stock";
+            // 
+            // p_desc
+            // 
+            this.p_desc.HeaderText = "desc";
+            this.p_desc.Name = "p_desc";
+            // 
+            // Edit
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "e";
+            this.Edit.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Name = "Edit";
+            // 
+            // Delete
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "d";
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Delete.HeaderText = "delete";
+            this.Delete.Name = "Delete";
             // 
             // ProductsDisplay
             // 
@@ -259,5 +317,12 @@
         private System.Windows.Forms.ComboBox DisplayRecordPerPageCb;
         private System.Windows.Forms.Label TotalRecordsLbl;
         private System.Windows.Forms.Label CurrentPageLbl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_PerizePerUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_Stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_desc;
+        private System.Windows.Forms.DataGridViewButtonColumn Edit;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
     }
 }

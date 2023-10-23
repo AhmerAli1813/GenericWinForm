@@ -37,7 +37,7 @@ namespace RepositoryPattern.Genrics
             {
                 connection.Open();
                 //impelementaion new enitiy of product table
-                string qurey = $"INSERT INTO  ${tableName} (p_name,p_desc,p_unitPerPerize,p_Stock) VALUES(@name , @desc,@peize,@stockQty)";
+                string qurey = $"INSERT INTO  {tableName} (p_name,p_desc,p_unitPerPerize,p_Stock) VALUES(@name , @desc,@peize,@stockQty)";
                 SqlCommand cmd = new SqlCommand(qurey, connection);
                 cmd.Parameters.AddWithValue("@name", entity.p_name);
                 cmd.Parameters.AddWithValue("@desc", entity.p_desc);
