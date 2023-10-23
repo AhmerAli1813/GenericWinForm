@@ -46,6 +46,7 @@
             this.DisplayRecordPerPageCb = new System.Windows.Forms.ComboBox();
             this.TotalRecordsLbl = new System.Windows.Forms.Label();
             this.p_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_PerizePerUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,6 +114,7 @@
             this.ProductDisplayDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductDisplayDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.p_id,
+            this.SNo,
             this.p_name,
             this.p_PerizePerUnit,
             this.p_Stock,
@@ -243,7 +245,14 @@
             // p_id
             // 
             this.p_id.HeaderText = "Id";
+            this.p_id.MaxInputLength = 100;
             this.p_id.Name = "p_id";
+            this.p_id.Visible = false;
+            // 
+            // SNo
+            // 
+            this.SNo.HeaderText = "Sno";
+            this.SNo.Name = "SNo";
             // 
             // p_name
             // 
@@ -318,6 +327,7 @@
         private System.Windows.Forms.Label TotalRecordsLbl;
         private System.Windows.Forms.Label CurrentPageLbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_PerizePerUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_Stock;

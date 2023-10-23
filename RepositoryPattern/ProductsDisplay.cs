@@ -51,11 +51,13 @@ namespace RepositoryPattern
             ProductDisplayDGV.Rows.Clear();
 
             int rowNumber = (_currentPage - 1) * _recordsPerPage + 1;
+            int Sno = 0;
             //display DataGridView for products
             foreach (Product product in products)
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(ProductDisplayDGV, product.p_id, product.p_name, product.p_unitPerPerize, product.p_Stock, product.p_desc);
+                Sno++;
+                row.CreateCells(ProductDisplayDGV, product.p_id,Sno, product.p_name, product.p_unitPerPerize, product.p_Stock, product.p_desc);
                 rowNumber++;
                 ProductDisplayDGV.Rows.Add(row);
             }
@@ -68,7 +70,7 @@ namespace RepositoryPattern
         {
             int totalPage = (int)Math.Ceiling((double)_totalReords / _recordsPerPage);
             CurrentPageLbl.Text = $"Page {_currentPage} of {totalPage} ";
-            TotalRecordsLbl.Text = $"TatalRecords : {_totalReords} ";
+            TotalRecordsLbl.Text = $"TotalRecords : {_totalReords} ";
 
         }
 
@@ -114,7 +116,7 @@ namespace RepositoryPattern
                     if (product != null)
                     {
                         ActionProduct actionProduct = new ActionProduct();
-                        actionProduct.Show();
+                    
                         actionProduct.idTxtBx.Text = product.p_id.ToString();
                         actionProduct.pNameTxtBx.Text = product.p_name;
                         actionProduct.stockTxtBx.Text = product.p_Stock.ToString();

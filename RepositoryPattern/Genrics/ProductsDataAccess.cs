@@ -54,7 +54,7 @@ namespace RepositoryPattern.Genrics
             {
                 connection.Open();
                 //impelementaion update enitiy of product table
-                string qurey = $"UPDATE   ${tableName} SET p_name =@name, p_desc =@desc ,p_unitPerPerize = @peize,p_Stock = @stockQty";
+                string qurey = $"UPDATE   {tableName} SET p_name =@name, p_desc =@desc ,p_unitPerPerize = @peize,p_Stock = @stockQty WHERE p_id = {entity.p_id}";
                 SqlCommand cmd = new SqlCommand(qurey, connection);
                 cmd.Parameters.AddWithValue("@name", entity.p_name);
                 cmd.Parameters.AddWithValue("@desc", entity.p_desc);
@@ -71,9 +71,10 @@ namespace RepositoryPattern.Genrics
             {
                 connection.Open();
                 //impelementaion update enitiy of product table
-                string qurey = $"DELETE FROM   ${tableName} WHERE p_id = @id ";
+                string qurey = $"DELETE FROM   {tableName} WHERE p_id = @id ";
                 SqlCommand cmd = new SqlCommand(qurey, connection);
                 cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
             }
         }
         public Product GetProductById(int id, string tableName)
@@ -91,16 +92,16 @@ namespace RepositoryPattern.Genrics
                     cmd.Parameters.AddWithValue("@id", id);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             //now here we intialize the product data from  the database
                             product = new Product
                             {
-                                p_id = (int)reader["p_id"],
-                                p_name = (string)reader["p_name"],
-                                p_desc = (string)reader["p_desc"],
-                                p_Stock = (double)reader["p_Stock"],
-                                p_unitPerPerize = (double)reader["p_unitPerPerize"]
+                                p_id = Convert.ToInt32(reader["p_id"]),
+                                p_name = Convert.ToString(reader["p_name"]),
+                                p_desc = Convert.ToString(reader["p_desc"]),
+                                p_unitPerPerize = Convert.ToDouble(reader["p_unitPerPerize"]),
+                                p_Stock = Convert.ToDouble(reader["p_Stock"])
                                 //add more properties as your need
                             };
                         }
@@ -131,12 +132,12 @@ namespace RepositoryPattern.Genrics
                             Product product = new Product
                             { 
                                 p_id = Convert.ToInt32(reader["p_id"]),
-                             p_name = Convert.ToString(reader["p_name"]),
-                             p_desc = Convert.ToString(reader["p_desc"]),
-                             p_unitPerPerize = Convert.ToDouble(reader["p_unitPerPerize"]),
-                             p_Stock = Convert.ToDouble(reader["p_Stock"])
+                                 p_name = Convert.ToString(reader["p_name"]),
+                                 p_desc = Convert.ToString(reader["p_desc"]),
+                                 p_unitPerPerize = Convert.ToDouble(reader["p_unitPerPerize"]),
+                                 p_Stock = Convert.ToDouble(reader["p_Stock"])
                             //add more properties as your need
-                        };
+                            };
                             products.Add(product);
                         }
                         
